@@ -1,1 +1,81 @@
+import java.util.ArrayList;
 
+public class Customer {
+
+	private String customerID;
+    private String name;
+    private String contactDetails;
+    private ArrayList<Product> cart;
+
+    public Customer(String customerID, String name, String contactDetails) {
+        this.customerID = customerID;
+        this.name = name;
+        this.contactDetails = contactDetails;
+        this.cart = new ArrayList<>();
+    }
+
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(String contactDetails) {
+		this.contactDetails = contactDetails;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+	public void setCart(ArrayList<Product> cart) {
+		this.cart = cart;
+	}
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void addToCart(Product product) {
+        cart.add(product);
+    }
+
+    public ArrayList<Product> getCart() {
+        return cart;
+    }
+
+    public void checkout(Shop shop) {
+        Order order = new Order(this, cart);
+        shop.placeOrder(order);
+        cart.clear();
+    }
+}
+
+
+public class Product {
+    private String productID;
+    private String name;
+    private double price;
+    private String category;
+    private int stockLevel;
+
+    public Product(String productID, String name, double price, String category, int stockLevel) {
+        this.productID = productID;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.stockLevel = stockLevel;
+    }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
